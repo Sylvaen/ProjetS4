@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+.titre {
+	text-align: center;
+}
+
+body {
+	color: red;
+}
+
+table {
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: red;
+	width: 2em;
+	heigth: 2em;
+	text-align: center;
+}
