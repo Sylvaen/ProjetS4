@@ -16,9 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Joueur;
 import beans.Parties;
 
 
+
+/**
+ * Identifie et autorise / refuse la connexion
+ * @author dumetza
+ *
+ */
 
 @WebServlet("/connexion")
 public class Connexion extends HttpServlet {
@@ -27,13 +34,12 @@ public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW_GOOD = "/WEB-INF/Accueil.jsp";
 	private static final String VIEW_NOT_GOOD = "/WEB-INF/index.jsp";
+	
 
     public Connexion() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 
 	
 	/**
@@ -104,6 +110,11 @@ public class Connexion extends HttpServlet {
 	
 	}
 
+	/**
+	 * Affiche toutes les parties en cours que l'utilisateur peut rejoindre
+	 * @param request
+	 * @param response
+	 */
 	public void rechercheParties (HttpServletRequest request, HttpServletResponse response) {
 		
 		ArrayList<Parties> parties = new ArrayList<Parties>();
@@ -111,38 +122,39 @@ public class Connexion extends HttpServlet {
         String url = "jdbc:postgresql://psqlserv/n3p1";
         String user = "dumetza";
         String password = "moi";
-		
-	    
-	    // DRIVER
+
 		try {
 			   Class.forName("org.postgresql.Driver");
 			   System.out.println("Driver O.K.");
-		} catch (ClassNotFoundException e2) {
+				con = DriverManager.getConnection(url,user,password);
+				
+		} catch (Exception e) {
+			
 			System.out.println("driver KO");
-			e2.printStackTrace();
-		}
-		
-		// connection
-		try {
-			con = DriverManager.getConnection(url,user,password);
-		} catch (SQLException e1) {
-	
+			e.printStackTrace();
 			System.out.println("connection KO");
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
+
 		
 		String requete = "select nom, joueur1 from parties;";
+		
 		try {
 			
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(requete);
+			
 			while (rs.next()) {
+	
 				Parties part = new Parties ();
+				Joueur joueur1 = new Joueur ();
+				part.setJoueur1(joueur1);
 				String nom = rs.getString("nom");
 				String j = rs.getString("joueur1");	
-				part.setJoueur1(j);
+				part.getJoueur1().setPseudo(j);
 				part.setNom(nom);
 				parties.add(part);
+
 			}
 			
 			System.out.println("Il y a : " + parties.size() + " parties");

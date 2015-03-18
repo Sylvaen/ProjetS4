@@ -64,29 +64,14 @@ public class Plateau {
 		int verification = TAILLE * TAILLE;
 		boolean verif = true;
 
-		if (s.length() == verification) {
-			for (int i = 0; i < s.length(); i++) {
-				if (i % 19 == 0) {
-					char c = s.charAt(i);
-					if (c != '\n') {
-						verif = false;
-
-					}
-				}
-			}
-
-			if (verif == false) {
-				System.out.println("Le contenu de la chaine n'est pas correct."
-						+ "\n manquant ? mal place ?");
-				return false;
-			}
-
-		} else {
-			System.out.println("La chaine ne contient pas " + TAILLE * TAILLE
-					+ " caracteres");
+		if (s.length() != verification) {
+				verif = false;
+		}
+		if (verif == false) {
+			System.out.println("Le contenu de la chaine n'est pas correct."
+					+ "\n manquant ? mal place ?");
 			return false;
 		}
-		
 
 		return true;
 	}

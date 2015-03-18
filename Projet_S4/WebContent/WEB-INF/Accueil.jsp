@@ -24,8 +24,14 @@
 	<p> Voici les parties que vous pouvez rejoindre </p>
 	<p> 
 	<c:forEach items="${parties}" var="par">
-		Nom: ${par.nom} ; Créateur: ${par.joueur1}
-		<br>
+		Nom: ${par.nom} ; Createur: ${par.joueur1.pseudo}
+		
+		 <!-- rejoindre une partie -->
+		<form action ="RejoindrePartie" method="post">
+			<input type ="submit" value="Rejoindre" name="Rejoindre"/> 
+			<input type="hidden" value="${par.nom}" name="partie"/>
+			<input type="hidden" value ="${par.joueur1.pseudo}" name="joueur1"/>
+		</form>
 	</c:forEach>
 	</p>
 </body>

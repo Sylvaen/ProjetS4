@@ -10,10 +10,9 @@
 </head>
 <body>
 
-<p class="titre"> ${nom} </p>
+<p class="titre">   ${nom} </p>
 <p class="plateau"> ${plateau} </p>
 
 <p> Vos lettres </p>
-<p> ${lettresj1} </p>
+<p> ${lettresj2} </p>
 </body>
-</html>
