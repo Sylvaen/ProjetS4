@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.ConnexionMYSQL;
+
 /**
  * Servlet servant a inscrire un user dans la BDD (table users) Redirections : -
  * index.jsp si echec - Accueil.jsp si succes
@@ -26,6 +28,8 @@ public class Inscription extends HttpServlet {
 
 	private static final String VIEW = "/WEB-INF/index.jsp";
 	private static final String VIEW_GOOD = "/WEB-INF/Accueil.jsp";
+	private ConnexionMYSQL con_mysql = null;
+	private Connection con = null;
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,22 +46,9 @@ public class Inscription extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Connection con = null;
-		String url = "jdbc:postgresql://psqlserv/n3p1";
-		String user = "dumetza";
-		String password = "moi";
 
-		try {
-			Class.forName("org.postgresql.Driver");
-			System.out.println("Driver O.K.");
-			con = DriverManager.getConnection(url, user, password);
+		
 
-		} catch (Exception e) {
-			System.out.println("driver KO");
-			e.printStackTrace();
-			System.out.println("connection KO");
-			e.printStackTrace();
-		}
 
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
@@ -65,7 +56,7 @@ public class Inscription extends HttpServlet {
 		ResultSet resultats = null;
 
 		try {
-			Statement stmt = con.createStatement();
+			Statement stmt = con_mysql.getConnection().createStatement();
 			resultats = stmt.executeQuery(requete);
 
 			if (!resultats.next()) {

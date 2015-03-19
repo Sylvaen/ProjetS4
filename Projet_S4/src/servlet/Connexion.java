@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.ConnexionMYSQL;
 import beans.Joueur;
 import beans.Parties;
 
@@ -34,6 +35,7 @@ public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW_GOOD = "/WEB-INF/Accueil.jsp";
 	private static final String VIEW_NOT_GOOD = "/WEB-INF/index.jsp";
+	private ConnexionMYSQL con_mysql = new ConnexionMYSQL();
 	
 
     public Connexion() {
@@ -48,32 +50,7 @@ public class Connexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		HttpSession s = request.getSession();
-		//if(s )
-		Connection con = null;
-    
-        String url = "jdbc:postgresql://psqlserv/n3p1";
-        String user = "dumetza";
-        String password = "moi";
-		
-	    
-	    // DRIVER
-		try {
-			   Class.forName("org.postgresql.Driver");
-			   System.out.println("Driver O.K.");
-		} catch (ClassNotFoundException e2) {
-			System.out.println("driver KO");
-			e2.printStackTrace();
-		}
-		
-		// connection
-		try {
-			con = DriverManager.getConnection(url,user,password);
-		} catch (SQLException e1) {
-	
-			System.out.println("connection KO");
-			e1.printStackTrace();
-		}
-		
+
 		//requete
 		
 		String pseudo = request.getParameter("pseudo");
@@ -83,7 +60,8 @@ public class Connexion extends HttpServlet {
 		ResultSet resultats = null;
 		
 		try {
-			Statement stmt = con.createStatement();
+			Connection c = con_mysql.getConnection();
+			Statement stmt = c.createStatement();
 			resultats = stmt.executeQuery(requete);
 			
 			
@@ -118,30 +96,14 @@ public class Connexion extends HttpServlet {
 	public void rechercheParties (HttpServletRequest request, HttpServletResponse response) {
 		
 		ArrayList<Parties> parties = new ArrayList<Parties>();
-		Connection con = null;
-        String url = "jdbc:postgresql://psqlserv/n3p1";
-        String user = "dumetza";
-        String password = "moi";
-
-		try {
-			   Class.forName("org.postgresql.Driver");
-			   System.out.println("Driver O.K.");
-				con = DriverManager.getConnection(url,user,password);
-				
-		} catch (Exception e) {
 			
-			System.out.println("driver KO");
-			e.printStackTrace();
-			System.out.println("connection KO");
-			e.printStackTrace();
-		}
 
 		
 		String requete = "select nom, joueur1 from parties;";
 		
 		try {
 			
-			Statement stmt = con.createStatement();
+			Statement stmt = con_mysql.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(requete);
 			
 			while (rs.next()) {

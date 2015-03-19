@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.ConnexionMYSQL;
 import beans.Joueur;
 import beans.Plateau;
 
@@ -26,6 +27,7 @@ public class Partie extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/Partie.jsp";
+	private ConnexionMYSQL con = null;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -77,18 +79,9 @@ public class Partie extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("lettresj1", lettres_j1);
 		
-        String url = "jdbc:postgresql://psqlserv/n3p1";
-        String user = "dumetza";
-        String password = "moi";
-	    
-	    // DRIVER
-		try {
-			   Class.forName("org.postgresql.Driver");
-			   System.out.println("Driver O.K.");
-		} catch (ClassNotFoundException e2) {
-			System.out.println("driver KO");
-			e2.printStackTrace();
-		}
+		  
+
+		
 
 
 		String requete = "insert into parties (nom, joueur1,  plateau)"
@@ -98,8 +91,9 @@ public class Partie extends HttpServlet {
 	
 		// connection + requete
 		try {
-			Connection con = DriverManager.getConnection(url,user,password);
-			Statement stmt = con.createStatement();
+			
+			con.getConnection();
+			Statement stmt = con.getConnexion().createStatement();
 			stmt.executeUpdate(requete);
 			
 			String ajout_lettresj1 = "UPDATE parties SET lettres_j1 = '" +  lettres_j1  + "' WHERE nom='" + nom_partie +

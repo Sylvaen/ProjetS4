@@ -39,10 +39,11 @@ public class Index extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		Connection con = null;
-    
-        String url = "jdbc:postgresql://psqlserv/n3p1";
-        String user = "dumetza";
-        String password = "moi";
+		  
+        String url = "jdbc:postgresql://91.121.155.7/n3p1";
+        String user = "projet";
+        String password = "projet";
+		
 		
 	    
 	    // DRIVER
