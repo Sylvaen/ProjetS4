@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.ConnexionMYSQL;
+import dao.ConnexionMYSQL;
 import beans.Joueur;
 import beans.Parties;
 
@@ -37,6 +37,14 @@ public class Connexion extends HttpServlet {
 
 	public Connexion() {
 		super();
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		req.setAttribute("logErr", "T'as essayé de me brain là ?");
+		this.getServletContext().getRequestDispatcher(VIEW_NOT_GOOD)
+		.forward(req, resp);
 	}
 
 	/**

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.ConnexionMYSQL;
+import dao.ConnexionMYSQL;
 import beans.Joueur;
 import beans.Plateau;
 

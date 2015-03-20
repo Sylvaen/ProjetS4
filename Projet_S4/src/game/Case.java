@@ -1,4 +1,4 @@
-package beans;
+package game;
 
 public class Case {
 

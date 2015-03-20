@@ -1,11 +1,6 @@
-package beans;
+package beans; 
 
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+import game.Case;
 
 public class Plateau {
 
