@@ -1,5 +1,6 @@
 package beans;
 
+
 /**
  * Bean : represente une partie simple
  * @author dumetza

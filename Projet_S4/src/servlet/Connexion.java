@@ -31,7 +31,6 @@ import beans.Parties;
 public class Connexion extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final String VIEW_GOOD = "/WEB-INF/Accueil.jsp";
 	private static final String VIEW_NOT_GOOD = "/WEB-INF/index.jsp";
 	private ConnexionMYSQL con_mysql = new ConnexionMYSQL();
 
