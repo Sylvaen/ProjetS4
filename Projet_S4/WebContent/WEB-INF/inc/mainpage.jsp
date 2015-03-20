@@ -2,6 +2,8 @@
 	<p class="plogin">${sessionScope.pseudo}</p>
 	<p class="infoUser">Parties gagnees: 10</p>
 	<p class="infoUser">Ratio: 50%</p>
+	<p class="infoUser">Je fais comment pour me deco ????</p>
+	
 </div>
 <div id="content">
 	<c:import url="inc/menu.jsp" />
