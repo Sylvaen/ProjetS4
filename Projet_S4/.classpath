@@ -9,6 +9,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/amaury/Téléchargements/mysql-connector-java-5.1.34 (2)/mysql-connector-java-5.1.34-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

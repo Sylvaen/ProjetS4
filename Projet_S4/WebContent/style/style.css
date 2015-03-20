@@ -26,6 +26,13 @@ body {
 	height: auto;
 }
 
+#content-left .erreurMessage{
+	font-size: 15px;
+}
+
+#content-left .infoUser{
+	margin-left:1em;
+}
 .plogin {
 	margin-top: 1px;
 	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2);
