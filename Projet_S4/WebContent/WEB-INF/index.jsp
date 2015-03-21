@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<c:choose>
+	<c:choose>
 		<c:when test="${not empty sessionScope.pseudo}">
-			<c:import url="inc/mainpage.jsp"/>
+			<c:import url="inc/mainpage.jsp" />
 		</c:when>
 		<c:otherwise>
-			<c:import url="inc/welcome.jsp"/>
+			<c:import url="inc/welcome.jsp" />
 		</c:otherwise>
 	</c:choose>
 
