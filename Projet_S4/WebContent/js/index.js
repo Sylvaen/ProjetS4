@@ -12,7 +12,7 @@ function afficherInscription() {
 	element.innerHTML = "<div id='inscForm'>" + "<h3>Inscription :</h3>"
 	+ "<FORM id='inscriptionForm' method='post' action='inscription'>"
 	+ "<input type='text' value='pseudo' name='pseudo' required/> <br><input"
-	+ " type='text' value='mdp' name='mdp' required/><br><input type='text' value='email' name='email' required/><br>"
+	+ " type='password' value='mdp' name='mdp' required/><br><input type='text' value='email' name='email' required/><br>"
 	+ "<input type='submit' name='Valider' class='inscr'/>" + "</FORM>"
 	+"</div>";
 }
@@ -32,7 +32,7 @@ function afficherInscription2() {
 	element.innerHTML = "<div id='inscForm'>" + "<h3>Inscription :</h3>"
 			+ "<FORM id='inscriptionForm' method='post' action='inscription'>"
 			+ "<input type='text' value='pseudo' name='pseudo' required/> <br><input"
-			+ " type='text' value='mdp' name='mdp' required/><br><input type='text' value='email' name='email' required/><br>"
+			+ " type='password' value='mdp' name='mdp' required/><br><input type='text' value='email' name='email' required/><br>"
 			+ "<input type='submit' name='Valider' class='inscr'/>" + "</FORM>"
 			+ "<p>" + erreur + "</p></div>";
 }

@@ -11,15 +11,16 @@ import beans.User;
 import dao.DAOUser;
 
 public class ConnexionForm {
-	private static final String CHAMP_PASS = "motdepasse";
-	private static final String CHAMP_NOM = "nom";
+	private static final String CHAMP_PASS = "mdp";
+	private static final String CHAMP_NOM = "pseudo";
 	private static final String ALGO_CHIFFREMENT = "SHA-256";
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
+
 	public String getResultat() {
 		return this.resultat;
 	}
-	
+
 	public Map<String, String> getErreurs() {
 		return this.erreurs;
 	}
@@ -32,46 +33,52 @@ public class ConnexionForm {
 
 		/* Validation du champ email. */
 		try {
-		validationPseudo(nom);
-		} catch ( Exception e ) {
-		setErreur( CHAMP_NOM, e.getMessage() );
+			validationPseudo(nom);
+		} catch (Exception e) {
+			setErreur(CHAMP_NOM, e.getMessage());
 		}
 		utili.setName(nom);
 		/* Validation du champ mot de passe. */
 		try {
-		validationMotDePasse( motDePasse );
-		} catch ( Exception e ) {
-		setErreur( CHAMP_PASS, e.getMessage() );
+			validationMotDePasse(motDePasse);
+		} catch (Exception e) {
+			setErreur(CHAMP_PASS, e.getMessage());
 		}
 		ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
 		passwordEncryptor.setAlgorithm(ALGO_CHIFFREMENT);
 		passwordEncryptor.setPlainDigest(false);
-		utili.setPwd( motDePasse );
-		/*On verifie que l'utilisateur et le mdp sont exacts */
+		utili.setPwd(motDePasse);
+		/* On verifie que l'utilisateur et le mdp sont exacts */
 		User user = DAOUser.getUserByUsername(utili.getName());
-		if(user!=null){
+		if (user != null) {
 			String mdp1 = utili.getPwd();
 			String mdp2 = user.getPwd();
-			if(!passwordEncryptor.checkPassword(mdp1, mdp2)){
+			if (!passwordEncryptor.checkPassword(mdp1, mdp2)) {
+				System.out.println("compte ou mdp inv: " + mdp1);
 				setErreur("noLog", "Compte ou mot de passe invalide");
+			} else {
+				if (user.getValide() == 0) {
+					setErreur("noLog", "Merci de valider l'email");
+					System.out.println("novalid");
+
+				}
 			}
-			else{
-			    if(user.getValide() == 0)
-			        setErreur("noLog", "Merci de valider l'email");
-			}
-		}
-		else{
+		} else {
+			System.out.println("compte ou mdp inv2");
 			setErreur("noLog", "Compte ou mot de passe invalide");
 		}
-			
+
 		/* Initialisation du résultat global de la validation. */
-		if ( erreurs.isEmpty() ) {
-		resultat = "Succès de la connexion.";
-		return user;
-		
+		if (erreurs.isEmpty()) {
+			resultat = "Succès de la connexion.";
+			System.out.println("connexion ok");
+
+			return user;
 		} else {
-		resultat = "Échec de la connexion.";
-		return null;
+			System.out.println("connexion nok");
+
+			resultat = "Échec de la connexion.";
+			return null;
 		}
 	}
 
@@ -86,7 +93,6 @@ public class ConnexionForm {
 					"Merci de saisir un pseudo valide.");
 		}
 	}
-
 
 	/**
 	 * Valide le mot de passe saisi.

@@ -2,10 +2,10 @@
 	<p class="plogin">Connexion</p>
 	<FORM method="post" action="connexion">
 		<input class="inputs_login" type="text" value="pseudo" name="pseudo" />
-		<input class="inputs_login" type="text" value="mdp" name="mdp" /> <input
+		<input class="inputs_login" type="password" value="mdp" name="mdp" /> <input
 			class="btnCon" type="submit" value="Connexion" />
 	</FORM>
-	<p class="erreurMessage">${logErr}</p>
+	<p class="erreurMessage">${result}</p>
 </div>
 
 <div id="content">

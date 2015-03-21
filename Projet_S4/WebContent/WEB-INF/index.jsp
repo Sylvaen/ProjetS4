@@ -10,7 +10,7 @@
 <body>
 
 	<c:choose>
-		<c:when test="${not empty sessionScope.pseudo}">
+		<c:when test="${not empty sessionScope.user}">
 			<c:import url="inc/mainpage.jsp" />
 		</c:when>
 		<c:otherwise>

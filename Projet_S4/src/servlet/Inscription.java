@@ -59,7 +59,6 @@ public class Inscription extends HttpServlet {
 		User utilisateur = null;
 		// Vérification proprement dite du captcha
 		utilisateur = form.inscrireUtilisateur(request);
-		System.out.println("WTF2");
 
 		/*
 		if (captcha.isCorrect(captchaValue)) {

@@ -1,5 +1,5 @@
 <div id="content-left">
-	<p class="plogin">${sessionScope.pseudo}</p>
+	<p class="plogin">${sessionScope.user.name}</p>
 	<p class="infoUser">Parties gagnees: 10</p>
 	<p class="infoUser">Ratio: 50%</p>
 	<p class="infoUser">Je fais comment pour me deco ????</p>
