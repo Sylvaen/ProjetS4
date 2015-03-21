@@ -71,7 +71,7 @@ public class Connexion extends HttpServlet {
 				// La connexion a fonctionne
 				if (resultats.next()) {
 					HttpSession session = request.getSession();
-					session.setAttribute("pseudo", pseudo);
+					session.setAttribute("user", pseudo);
 					rechercheParties(request, response);
 					response.sendRedirect("index");
 

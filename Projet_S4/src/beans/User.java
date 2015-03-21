@@ -6,6 +6,9 @@ public class User {
 	private int id;
 	private String pwd;
 	private int points;
+	private int valide = 1;
+	private String email;
+	private String key;
 	
 	public String getPwd() {
 		return pwd;
@@ -44,6 +47,30 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getValide() {
+		return valide;
+	}
+
+	public void setValide(int valide) {
+		this.valide = valide;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 	
 	

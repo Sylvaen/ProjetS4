@@ -10,7 +10,6 @@ public class HibernateSessionFactory {
 			// Crée l’objet SessionFactory à partir de hibernate.cfg.xml
 			sessionFactory = new Configuration().configure()
 					.buildSessionFactory();
-
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);

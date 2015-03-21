@@ -14,7 +14,7 @@
 			<c:import url="inc/mainpage.jsp"/>
 		</c:when>
 		<c:otherwise>
-			<c:import url="inc/welcome.jsp"></c:import>
+			<c:import url="inc/welcome.jsp"/>
 		</c:otherwise>
 	</c:choose>
 
