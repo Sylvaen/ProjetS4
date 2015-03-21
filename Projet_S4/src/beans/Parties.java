@@ -11,7 +11,7 @@ public class Parties {
 	private String nom;
 	private Joueur joueur1;
 	private Joueur joueur2;
-	
+	private Plateau p;
 	private String j1;
 	
 	public String getJ1() {
@@ -46,6 +46,14 @@ public class Parties {
 
 	}
 	
+	public Plateau getP() {
+		return p;
+	}
+
+	public void setP(Plateau p) {
+		this.p = p;
+	}
+
 	public Parties (String j1, String nom) {
 		this.j1 = j1;
 		this.nom = nom;
