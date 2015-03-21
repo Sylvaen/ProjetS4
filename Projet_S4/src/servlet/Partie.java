@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ConnexionMYSQL;
-import beans.Joueur;
+import beans.Parties;
 import beans.Plateau;
+import beans.User;
+import dao.ConnexionMYSQL;
 
 /**
  * Servlet implementation class Partie
@@ -67,13 +68,18 @@ public class Partie extends HttpServlet {
 	 */
 	public void savePlateau (HttpServletRequest request, String nom_partie, String nom_joueur1, String s) {
 		
+		Parties  p = new Parties ();
+		p.initialiseLettres(p.getLettresj1());
+		
+		
+		
 		// on initialise le joueur 1
-		Joueur joueur1 = new Joueur();
+		User joueur1 = new User();
 		joueur1.setPseudo(nom_joueur1);
 		
 		// on range ses lettres dans la session
-		joueur1.initialiseLettres();
-		String lettres_j1 = joueur1.convertLettres();
+	
+		String lettres_j1 = p.convertLettres(p.getLettresj1());
 		HttpSession session = request.getSession();
 		session.setAttribute("lettresj1", lettres_j1);
 		

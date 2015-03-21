@@ -19,7 +19,26 @@ public class Parties {
 	private String plateauString;
 	private Plateau p;
 	private String j1;
+	private char [] lettresj1;
+	private char [] lettresj2;
 	
+	
+	public char[] getLettresj1() {
+		return lettresj1;
+	}
+
+	public void setLettresj1(char[] lettresj1) {
+		this.lettresj1 = lettresj1;
+	}
+
+	public char[] getLettresj2() {
+		return lettresj2;
+	}
+
+	public void setLettresj2(char[] lettresj2) {
+		this.lettresj2 = lettresj2;
+	}
+
 	public String getJ1() {
 		return j1;
 	}
@@ -37,7 +56,6 @@ public class Parties {
 	}
 
 	private String j2;
-	
 	
 	/**
 	 * Creation d'une partie
@@ -137,5 +155,66 @@ public class Parties {
 	}
 	
 	
+	/**
+	 * Affiche les lettres du joueur dans la console
+	 */
+	public static  void afficheLettres(char [] lettres) {
+		for (int i = 0; i < 7; i++) {
+			System.out.println("Lettre [" + i + "] = " + lettres[i]);
+		}
+	}
 	
+
+	
+	/**
+	 * Se defausser d'une lettre quand on la joue et pioche ensuite
+	 */
+	
+	public void defausser (char  [] lettres) {
+		
+		for (int i = 1; i < 6; i++) {
+			lettres[i-1] = lettres[i];
+		}
+		
+		lettres[6] = pioche();
+		
+	}
+	
+	/**
+	 * Pioche une lettre et la retourne
+	 */
+	public char pioche() {
+
+		int a = (int) (Math.random() * (122 - 97)) + 97;
+		char c = (char) a;
+		return c;
+	}
+	
+	/**
+	 * Tire 7 lettres aleatoires et les mets dans le tableau 'lettres'
+	 */
+	public void initialiseLettres(char [] lettres) {
+		lettres = new char[7];
+		for (int i = 0; i < 7; i++) {
+			int a = (int) (Math.random() * (122 - 97)) + 97;
+			char c = (char) a;
+			lettres[i] = c;
+		}
+
+	}
+	/**
+	 * Convertir un tableau de lettres en STRING pour la BDD
+	 * @param tableau_lettres
+	 * @return
+	 */
+	public String convertLettres(char [] tableau_lettres) {
+		String res = "";
+
+		for (int i = 0; i < 7; i++) {
+			res += tableau_lettres[i];
+		}
+		return res;
+
+	}
+
 }

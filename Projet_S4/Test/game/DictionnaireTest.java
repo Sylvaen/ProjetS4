@@ -1,10 +1,10 @@
 package game;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import beans.Joueur;
+import beans.User;
 
 public class DictionnaireTest {
 
@@ -23,11 +23,12 @@ public class DictionnaireTest {
 	 * Verifie qu'un joueur gagne bien ses points apres avoir trouve un mot
 	 */
 	@Test
-	public void ajouterPoints() {
-		String mot = "chien";
-		Joueur j = new Joueur();
+	public void testAjouterPoints() {
+		String mot = "zizi";
+		User j = new User();
 		j.ajouterPoints(mot);
-		assertEquals(5, j.getPoints());
+		System.out.println("points de J = " + j.getPoints());
+		assertEquals(22, j.getPoints());
 	}
 	
 }

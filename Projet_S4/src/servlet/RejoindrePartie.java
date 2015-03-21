@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ConnexionMYSQL;
-import beans.Joueur;
+import beans.Parties;
 import beans.Plateau;
+import beans.User;
+import dao.ConnexionMYSQL;
 
 /**
  * Servlet implementation class JouerPartie
@@ -37,7 +37,7 @@ public class RejoindrePartie extends HttpServlet {
 	 * qui l'a cree, le plateau
 	 */
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response, Parties partie) throws ServletException, IOException {
 
 		Plateau p = new Plateau();
 		HttpSession s = request.getSession();
@@ -87,9 +87,9 @@ public class RejoindrePartie extends HttpServlet {
 				stmt.executeUpdate(rajout_j2);
 
 				// on range ses lettres dans la session
-				Joueur j2 = new Joueur();
-				j2.initialiseLettres();
-				String lettres_j2 = j2.convertLettres();
+				User j2 = new User();
+				partie.initialiseLettres(partie.getLettresj2());
+				String lettres_j2 = partie.convertLettres(partie.getLettresj2());
 				HttpSession session = request.getSession();
 				session.setAttribute("lettresj2", lettres_j2);
 

@@ -1,5 +1,7 @@
 package beans;
 
+import game.Alphabet;
+
 public class User {
 
 	private String name;
@@ -24,13 +26,6 @@ public class User {
 
 	public void setPoints(int points) {
 		this.points = points;
-	}
-
-
-
-	public User(){
-		
-		
 	}
 
 	public String getName() {
@@ -73,5 +68,33 @@ public class User {
 		this.key = key;
 	}
 	
+	/**
+	 * Ajoute les points selon les valeurs des lettres du mot S
+	 * @param s
+	 */
+	public void ajouterPoints (String s) {
+
+		int points = 0;
+		System.out.println("la");
+		for (int i=0; i < s.length(); i ++) {
+			char c = s.charAt(i);
+			String cs = c + "";
+			int iz =  (int) Alphabet.getAlphabet().get(cs);
+			points += iz;
+		}
+		
+		int points_actuels = this.getPoints();
+		this.setPoints(points_actuels + points);
+	}
+	
+
+	public void setPseudo(String nom_joueur1) {
+		this.name = nom_joueur1;
+		
+	}
+	
+
+	
+
 	
 }
