@@ -106,5 +106,17 @@ public class Joueur {
 		lettres[6] = this.pioche();
 		
 	}
+	/**
+	 * Ajoute les points au joueur qui a trouve un mot
+	 * Points ajoutes = longueur du mot trouve
+	 * @param j
+	 * @param s
+	 */
+	public void ajouterPoints (String s) {
+		int points = s.length();
+		int points_actuels = this.getPoints();
+		this.setPoints(points_actuels + points);
+	}
 
+	
 }
