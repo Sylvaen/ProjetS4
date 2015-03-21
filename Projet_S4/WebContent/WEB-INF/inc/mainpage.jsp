@@ -3,8 +3,8 @@
 	<p class="infoUser">Parties gagnees: 10</p>
 	<p class="infoUser">Ratio: 50%</p>
 	<form action="deconnexion">
-		<input type="submit" value="Deconnexion" name="Deconnexion"/>
-	</form>	
+		<input type="submit" value="Deconnexion" name="Deconnexion" />
+	</form>
 </div>
 <div id="content">
 	<c:import url="inc/menu.jsp" />
@@ -16,16 +16,23 @@
 		<p>Il est possible d'en creer une ou d'en rejoindre une</p>
 
 		<!-- CREER PARTIE  -->
-		<FORM method="get" action="Partie">
-			<input type="hidden" value="${sessionScope.user.name}" name="nom_joueur1" /> <input
-				type="text" value="Nom partie" name="nom" /> <input type="submit"
-				value="Creer partie" name="creer" />
+		<FORM method="POST" action="createPartie">
+			<input type="hidden" value="${sessionScope.user.name}"
+				name="nom_joueur1" /> <input type="text" value="Nom partie"
+				name="nom" /> <input type="submit" value="Creer partie"
+				name="creer" />
 		</FORM>
 
+		<p>
+			Vos parties en cours:
+			<c:forEach items="${listPartieEnCours}" var="part">
+				Nom: ${part.name} J1: ${part.User1.name} J2: ${part.User2.name}
+			</c:forEach>
+		</p>
 		<!-- REJOINDRE PARTIE  -->
 		<p>Voici les parties que vous pouvez rejoindre</p>
 		<p>
-			<c:forEach items="${parties}" var="par">
+			<c:forEach items="" var="par">
 		Nom: ${par.nom} ; Createur: ${par.joueur1.pseudo}
 		
 		 <!-- rejoindre une partie -->
