@@ -1,6 +1,7 @@
 package beans;
 
 
+
 /**
  * Bean : represente une partie simple
  * @author dumetza
@@ -9,8 +10,13 @@ package beans;
 public class Parties {
 
 	private String nom;
-	private Joueur joueur1;
-	private Joueur joueur2;
+	private int idj1;
+	private int idj2;
+	private User User1;
+	private User User2;
+	private int pj1;
+	private int pj2; 
+	private String plateauString;
 	private Plateau p;
 	private String j1;
 	
@@ -35,14 +41,14 @@ public class Parties {
 	
 	/**
 	 * Creation d'une partie
-	 * chaque joueur possede 7 lettres
+	 * chaque User possede 7 lettres
 	 * et 0 point au debut
 	 */
 	public Parties () {
-		this.joueur1 = new Joueur ();
-		this.joueur2 = new Joueur ();
-		this.joueur1.setPoints(0);
-		this.joueur2.setPoints(0);
+		this.User1 = new User ();
+		this.User2 = new User ();
+		this.User1.setPoints(0);
+		this.User2.setPoints(0);
 
 	}
 	
@@ -59,17 +65,17 @@ public class Parties {
 		this.nom = nom;
 	}
 
-	public Joueur getJoueur1() {
-		return joueur1;
+	public User getUser1() {
+		return User1;
 	}
-	public void setJoueur1(Joueur joueur1) {
-		this.joueur1 = joueur1;
+	public void setUser1(User User1) {
+		this.User1 = User1;
 	}
-	public Joueur getJoueur2() {
-		return joueur2;
+	public User getUser2() {
+		return User2;
 	}
-	public void setJoueur2(Joueur joueur2) {
-		this.joueur2 = joueur2;
+	public void setUser2(User User2) {
+		this.User2 = User2;
 	}
 
 	private int id;
@@ -85,6 +91,49 @@ public class Parties {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getIdj1() {
+		return idj1;
+	}
+
+	public void setIdj1(int idj1) {
+		this.idj1 = idj1;
+	}
+
+	public int getIdj2() {
+		return idj2;
+	}
+
+	public void setIdj2(int idj2) {
+		this.idj2 = idj2;
+	}
+
+	public String getPlateauString() {
+		return plateauString;
+	}
+
+	public void setPlateauString(String plateauString) {
+		this.plateauString = plateauString;
+		this.p = new Plateau();
+		p.initialisePlateau();
+		p.toPlateau(this.plateauString);
+	}
+
+	public int getPj1() {
+		return pj1;
+	}
+
+	public void setPj1(int pj1) {
+		this.pj1 = pj1;
+	}
+
+	public int getPj2() {
+		return pj2;
+	}
+
+	public void setPj2(int pj2) {
+		this.pj2 = pj2;
 	}
 	
 	
