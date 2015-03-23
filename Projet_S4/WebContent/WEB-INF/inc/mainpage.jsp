@@ -34,9 +34,9 @@
 				
 				<c:if test="${empty part.user2}">aucun</c:if>
 
-				<form method="POST" action="JouerPartie">
-					<input type="submit" value="Jouer" name=${part.nom
-					} />
+				<form method="POST" action="jouerPartie">
+					<input type="submit" value="JouerPartie" name="JouerPartie" />
+					<input type="hidden"  value="${part.nom}" name="jouer" />
 				</form>
 
 				<br>
@@ -45,17 +45,17 @@
 
 
 		<!-- Rejoindre les parties ou il manque un joueur  -->
-		
+
 		<p class="sousTitre">
 			Les parties disponibles :
 			<c:forEach items="${available}" var="part">
 				Nom: ${part.nom} J1: ${part.user1.name} J2: ${part.user2.name}
 				<c:if test="${empty part.user2}">aucun</c:if>
-				
+
 				<form method="POST" action="RejoindrePartie">
-				<input type="submit" value="Rejoindre" name="Rejoindre" />
-				<input type="hidden" value="${part.nom}" name="partie" />
-				<input type="hidden" value="${part.user1.name}" name="joueur1" />
+					<input type="submit" value="Rejoindre" name="Rejoindre" /> <input
+						type="hidden" value="${part.nom}" name="partie" /> <input
+						type="hidden" value="${part.user1.name}" name="joueur1" />
 				</form>
 				<br>
 			</c:forEach>

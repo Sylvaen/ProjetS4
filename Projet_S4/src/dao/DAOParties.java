@@ -68,7 +68,7 @@ public class DAOParties {
 			p.setNom(name);
 			
 			p.setIdj1(user.getId());
-			p.setPlateauString(pla.toString());
+			p.setPlateauString(pla.afficherPlateau2(pla.toString()));
 			p.setPj1(0);
 			
 			char [] l = p.initialiseLettresj1();

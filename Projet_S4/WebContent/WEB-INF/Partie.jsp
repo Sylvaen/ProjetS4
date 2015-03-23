@@ -12,7 +12,7 @@
 
 
 	<p class="titre">${nom}</p>
-	<p class="plateau">${plateau}</p>
+ 	<p class="plateau">${plateau}</p>
 
 	<p>Vos lettres</p>
 	<c:choose>

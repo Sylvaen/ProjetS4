@@ -52,7 +52,8 @@ public class RejoindrePartie extends HttpServlet {
 		http.setAttribute("user2", u);
 		http.setAttribute("lettresj2_str", pa.getLettresj2_str());
 		String plateau = pa.getPlateauString();
-		http.setAttribute("plateau", plateau);
+		String plateau_tronque = p.afficherPlateau2(plateau);
+		http.setAttribute("plateau", plateau_tronque);
 		String nom = pa.getNom();
 		http.setAttribute("nom", nom);
 		

@@ -44,10 +44,10 @@ public class Partie extends HttpServlet {
 		// On met toutes les infos de la partie dans la session
 		HttpSession session = request.getSession();
 		String name = request.getParameter("nom");
-		User user = (User) session.getAttribute("user");
+	User user = (User) session.getAttribute("user");
 		
-		DAOParties.createPartie(user, name);
-		Parties p = DAOParties.getPartiesByName(name);
+		Parties p = DAOParties.createPartie(user, name);
+		//Parties p = DAOParties.getPartiesByName(name);
 		p.setUser1(DAOUser.getUserById(p.getIdj1()));
 		p.setUser2(DAOUser.getUserById(p.getIdj2()));
 		String plateau = p.getPlateauString();
