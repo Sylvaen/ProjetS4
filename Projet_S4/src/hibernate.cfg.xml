@@ -9,6 +9,7 @@
 		<property name="hibernate.connection.url">jdbc:mysql://minestate.fr/projet</property>
 		<property name="hibernate.connection.username">lala</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hbm2ddl.auto">update</property>
 		<mapping resource="User.hbm.xml" />
 		<mapping resource="Parties.hbm.xml" />
 	</session-factory>

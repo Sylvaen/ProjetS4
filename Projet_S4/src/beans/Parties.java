@@ -1,5 +1,7 @@
 package beans;
 
+import java.io.Serializable;
+
 
 
 /**
@@ -7,21 +9,51 @@ package beans;
  * @author dumetza
  *
  */
-public class Parties {
+public class Parties implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nom;
 	private int idj1;
-	private int idj2;
-	private User User1;
-	private User User2;
-	private int pj1;
-	private int pj2; 
+	private int idj2 = 0;
+	private User user1;
+	private User user2;
+	private int pj1 = 0;
+	private int pj2 = 0; 
 	private String plateauString;
 	private Plateau p;
 	private String j1;
+	private String lettresj1_str;
+	private String lettresj2_str;
 	private char [] lettresj1;
 	private char [] lettresj2;
 	
+	
+	
+	
+	
+	public String getLettresj1_str() {
+		return lettresj1_str;
+	}
+
+	public void setLettresj1_str(String lettresj1_str) {
+		this.lettresj1_str = lettresj1_str;
+	}
+
+	public String getLettresj2_str() {
+		return lettresj2_str;
+	}
+
+	public void setLettresj2_str(String lettresj2_str) {
+		this.lettresj2_str = lettresj2_str;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	
 	public char[] getLettresj1() {
 		return lettresj1;
@@ -62,14 +94,15 @@ public class Parties {
 	 * chaque User possede 7 lettres
 	 * et 0 point au debut
 	 */
-	public Parties () {
-		this.User1 = new User ();
-		this.User2 = new User ();
-		this.User1.setPoints(0);
-		this.User2.setPoints(0);
-
+	public Parties (User u) {
+		this.user1 = u;
+		this.idj1 = u.getId();
+		this.lettresj1 = new char [7];
+		this.lettresj2 = new char [7];
 	}
 	
+	public Parties() {
+	}
 	public Plateau getP() {
 		return p;
 	}
@@ -84,16 +117,16 @@ public class Parties {
 	}
 
 	public User getUser1() {
-		return User1;
+		return user1;
 	}
 	public void setUser1(User User1) {
-		this.User1 = User1;
+		this.user1 = User1;
 	}
 	public User getUser2() {
-		return User2;
+		return user2;
 	}
 	public void setUser2(User User2) {
-		this.User2 = User2;
+		this.user2 = User2;
 	}
 
 	private int id;
@@ -133,9 +166,6 @@ public class Parties {
 
 	public void setPlateauString(String plateauString) {
 		this.plateauString = plateauString;
-		this.p = new Plateau();
-		p.initialisePlateau();
-		p.toPlateau(this.plateauString);
 	}
 
 	public int getPj1() {
@@ -158,7 +188,7 @@ public class Parties {
 	/**
 	 * Affiche les lettres du joueur dans la console
 	 */
-	public static  void afficheLettres(char [] lettres) {
+	public  void afficheLettres(char [] lettres) {
 		for (int i = 0; i < 7; i++) {
 			System.out.println("Lettre [" + i + "] = " + lettres[i]);
 		}
@@ -183,7 +213,7 @@ public class Parties {
 	/**
 	 * Pioche une lettre et la retourne
 	 */
-	public char pioche() {
+	public char pioche () {
 
 		int a = (int) (Math.random() * (122 - 97)) + 97;
 		char c = (char) a;
@@ -193,13 +223,17 @@ public class Parties {
 	/**
 	 * Tire 7 lettres aleatoires et les mets dans le tableau 'lettres'
 	 */
-	public void initialiseLettres(char [] lettres) {
-		lettres = new char[7];
+	public char [] initialiseLettres(char [] lettres) {
+
 		for (int i = 0; i < 7; i++) {
 			int a = (int) (Math.random() * (122 - 97)) + 97;
 			char c = (char) a;
+			
 			lettres[i] = c;
+			
 		}
+		System.out.println("Lettres, fin : " + lettres.toString());
+		return lettres;
 
 	}
 	/**
@@ -209,7 +243,6 @@ public class Parties {
 	 */
 	public String convertLettres(char [] tableau_lettres) {
 		String res = "";
-
 		for (int i = 0; i < 7; i++) {
 			res += tableau_lettres[i];
 		}

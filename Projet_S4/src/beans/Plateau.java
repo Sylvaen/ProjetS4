@@ -63,7 +63,8 @@ public class Plateau {
 				verif = false;
 		}
 		if (verif == false) {
-			System.out.println("Le contenu de la chaine n'est pas correct."
+			System.out.println("Taille chaine = "+ s.length());
+ 			System.out.println("Le contenu de la chaine n'est pas correct."
 					+ "\n manquant ? mal place ?");
 			return false;
 		}
@@ -85,5 +86,18 @@ public class Plateau {
 		
 	}
 	
-
+	public String afficherPlateau2(String plateau_string) {
+		String s = "<table>";
+		s+= plateau_string;
+		for (int i = 0; i < TAILLE; i++) {
+			s+= "<tr>";
+			for (int j = 0; j < TAILLE; j++) {
+				s+=("<td>"+plateau[i][j].getLettre()+"</td>");
+			}
+			s+="</tr>";
+		}
+		s+="</table>";
+		return s;
+		
+	}
 }

@@ -48,7 +48,7 @@ public class Alphabet {
 	 * Retourne l'alphabet
 	 * @return
 	 */
-	public static HashMap<String, Integer> getAlphabet() {
+	public HashMap<String, Integer> getAlphabet() {
 		return alphabet;
 	}
 

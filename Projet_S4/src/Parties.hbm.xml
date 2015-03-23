@@ -6,9 +6,11 @@
 		<id name="id" column="id" type="int">
 			<generator class="native"></generator>
 		</id>
-		<property name="nom" column="name" type="string"></property>
-		<property name="idj1" column="joueur1" type="integer"></property>
-		<property name="idj2" column="joueur2" type="integer"></property>
+		<property name="nom" column="nom" type="string"></property>
+		<property name="idj1" column="idj1" type="integer"></property>
+		<property name="idj2" column="idj2" type="integer"></property>
+		<property name="lettresj1_str" column="joueur1" type="string"></property>
+		<property name="lettresj2_str" column="joueur2" type="string"></property>
 		<property name="plateauString" column="plateau" type="string"></property>
 	</class>
 </hibernate-mapping>

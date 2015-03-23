@@ -16,6 +16,8 @@
 		<p>Il est possible d'en creer une ou d'en rejoindre une</p>
 
 		<!-- CREER PARTIE  -->
+
+
 		<FORM method="POST" action="createPartie">
 			<input type="hidden" value="${sessionScope.user.name}"
 				name="nom_joueur1" /> <input type="text" value="Nom partie"
@@ -23,12 +25,45 @@
 				name="creer" />
 		</FORM>
 
-		<p>
+
+		<!-- Rejoindre les parties ou l'utilisateur joue actuellement  -->
+		<p class="sousTitre">
 			Vos parties en cours:
-			<c:forEach items="${listPartieEnCours}" var="part">
-				Nom: ${part.name} J1: ${part.User1.name} J2: ${part.User2.name}
+			<c:forEach items="${partieEnCours}" var="part">
+				Nom: ${part.nom} J1: ${part.user1.name} J2: ${part.user2.name}
+				
+				<c:if test="${empty part.user2}">aucun</c:if>
+
+				<form method="POST" action="JouerPartie">
+					<input type="submit" value="Jouer" name=${part.nom
+					} />
+				</form>
+
+				<br>
 			</c:forEach>
 		</p>
+
+
+		<!-- Rejoindre les parties ou il manque un joueur  -->
+		
+		<p class="sousTitre">
+			Les parties disponibles :
+			<c:forEach items="${available}" var="part">
+				Nom: ${part.nom} J1: ${part.user1.name} J2: ${part.user2.name}
+				<c:if test="${empty part.user2}">aucun</c:if>
+				
+				<form method="POST" action="RejoindrePartie">
+				<input type="submit" value="Rejoindre" name="Rejoindre" />
+				<input type="hidden" value="${part.nom}" name="partie" />
+				<input type="hidden" value="${part.user1.name}" name="joueur1" />
+				</form>
+				<br>
+			</c:forEach>
+		</p>
+
+
+
+		<%-- 	ANCIENNE METHODE
 		<!-- REJOINDRE PARTIE  -->
 		<p>Voici les parties que vous pouvez rejoindre</p>
 		<p>
@@ -42,6 +77,6 @@
 						type="hidden" value="${par.joueur1.pseudo}" name="joueur1" />
 				</form>
 			</c:forEach>
-		</p>
+		</p> --%>
 	</div>
 </div>

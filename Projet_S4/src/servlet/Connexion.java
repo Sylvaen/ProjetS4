@@ -1,6 +1,6 @@
 package servlet;
 
-import java.awt.List;
+import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Parties;
 import beans.User;
 import dao.ConnexionMYSQL;
+import dao.DAOParties;
+import dao.DAOUser;
 import form.ConnexionForm;
 
 /**
@@ -60,7 +63,44 @@ public class Connexion extends HttpServlet {
 		User utilisateur = form.connecterUtilisateur(request);
 		/* Si il n'y a pas eu d'erreur */
 		if (form.getErreurs().isEmpty()) {
+
+			String name = request.getParameter("nom");
+			String pseudo = request.getParameter("pseudo");
+
+			User user = DAOUser.getUserByUsername(pseudo);
+
+			List<Parties> available = new ArrayList<Parties>();
+
+			List<Parties> partieEnCours = new ArrayList<Parties>();
+
+			List<Parties> parties = DAOParties.getParties();
+
+			for(Parties p: parties){
+				
+				User u = DAOUser.getUserById(p.getIdj1());
+				p.setUser1(u);
+				
+				User u2 = DAOUser.getUserById(p.getIdj2());
+				p.setUser2(u2);
+			
+				// Parties dans lesquelles on participe deja
+				if(p.getIdj1() == user.getId() || p.getIdj2() == user.getId()){
+
+					partieEnCours.add(p);
+			
+				}
+				
+				// Partie creer par d'autres utilisateurs
+				else{
+					if(p.getUser2() == null)
+					available.add(p);
+				}
+			}
+			session.setAttribute("available", available);
+			session.setAttribute("partieEnCours", partieEnCours);
 			session.setAttribute(ATT_SESSION_USER, utilisateur);
+		
+			
 			// envoyerEmail();
 		} else {
 			session.setAttribute(ATT_SESSION_USER, null);

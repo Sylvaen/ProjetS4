@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import beans.Parties;
 import beans.User;
 import dao.DAOParties;
+import dao.DAOPlateau;
+import dao.DAOUser;
 
 /**
  * Servlet implementation class Partie
@@ -33,28 +35,26 @@ public class Partie extends HttpServlet {
 	}
 
 	/**
-	 * Creer une partie : on recoit une requete GET de la part de Accueil.jsp
+	 * Creer une partie : on recoit une requete POST de la part de mainpage.hsp
 	 */
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+
+		// On met toutes les infos de la partie dans la session
 		HttpSession session = request.getSession();
 		String name = request.getParameter("nom");
 		User user = (User) session.getAttribute("user");
-		DAOParties.createPartie(user, name);
-		List<Parties> available = new ArrayList<Parties>();
-		List<Parties> partieEnCours = new ArrayList<Parties>();
-		List<Parties> parties = DAOParties.getParties();
-		for(Parties p: parties){
-			if(p.getIdj1() == user.getId() || p.getIdj2() == user.getId()){
-				partieEnCours.add(p);
-			}
-			else{
-				available.add(p);
-			}
-		}
 		
-		session.setAttribute("listPartieEnCours", partieEnCours);
-		session.setAttribute("listPartiesDispo", available);
+		DAOParties.createPartie(user, name);
+		Parties p = DAOParties.getPartiesByName(name);
+		String plateau = p.getPlateauString();
+		System.out.println("Partie :  plateau = " + plateau);
+		session.setAttribute("nom", name);
+		session.setAttribute("lettresj1_str", p.getLettresj1_str());
+		session.setAttribute("user", user);
+		session.setAttribute("plateau", plateau);
+		
 		this.getServletContext().getRequestDispatcher(VIEW)
 				.forward(request, response);
 	}
@@ -69,9 +69,9 @@ public class Partie extends HttpServlet {
 	 * @param s
 	 */
 	public void savePlateau(HttpServletRequest request, String nom_partie,
-			String nom_joueur1, String s) {
+			String nom_joueur1, String s, User u) {
 
-		Parties p = new Parties();
+		Parties p = new Parties(u);
 		p.initialiseLettres(p.getLettresj1());
 
 		// on range ses lettres dans la session

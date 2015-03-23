@@ -1,6 +1,6 @@
-package game;
-
 import static org.junit.Assert.assertEquals;
+import game.Alphabet;
+import game.Dictionnaire;
 
 import org.junit.Test;
 
@@ -24,9 +24,11 @@ public class DictionnaireTest {
 	 */
 	@Test
 	public void testAjouterPoints() {
+		Alphabet al = new Alphabet ();
+		al.initialise();
 		String mot = "zizi";
 		User j = new User();
-		j.ajouterPoints(mot);
+		j.ajouterPoints(mot,al);
 		System.out.println("points de J = " + j.getPoints());
 		assertEquals(22, j.getPoints());
 	}
