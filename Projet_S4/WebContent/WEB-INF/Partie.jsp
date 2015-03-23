@@ -15,11 +15,17 @@
 	<p class="plateau">${plateau}</p>
 
 	<p>Vos lettres</p>
-	<p>${lettresj1_str}</p>
+	<c:choose>
+		<c:when test="${partie.user1.id == sessionScope.user.id}">
+				<p>${lettresj1_str}</p>
+		</c:when>
+		<c:otherwise>
+				<p>${lettresj2_str}</p>
+		</c:otherwise>
+	</c:choose>
 	<p>Vous etes le joueur</p>
 	<p>${user.name}</p>
-	
-	<c:if test=""></c:if>
+
 
 </body>
 </html>

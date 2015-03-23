@@ -31,9 +31,6 @@ public class Parties implements Serializable {
 	private char [] lettresj2;
 	
 	
-	
-	
-	
 	public String getLettresj1_str() {
 		return lettresj1_str;
 	}
@@ -223,17 +220,20 @@ public class Parties implements Serializable {
 	/**
 	 * Tire 7 lettres aleatoires et les mets dans le tableau 'lettres'
 	 */
-	public char [] initialiseLettres(char [] lettres) {
+	public char [] initialiseLettresj2() {
 
+		lettresj2 = new char [7];
 		for (int i = 0; i < 7; i++) {
 			int a = (int) (Math.random() * (122 - 97)) + 97;
+			System.out.println(" a = "  + a);
 			char c = (char) a;
-			
-			lettres[i] = c;
+			System.out.println("c = " + c);
+			lettresj2[i] = c;
 			
 		}
-		System.out.println("Lettres, fin : " + lettres.toString());
-		return lettres;
+		System.out.println("Lettres, fin : " + lettresj2.toString());
+		lettresj2_str = lettresj2.toString();
+		return lettresj2;
 
 	}
 	/**
@@ -250,4 +250,20 @@ public class Parties implements Serializable {
 
 	}
 
+	public char [] initialiseLettresj1() {
+
+		lettresj1 = new char [7];
+		for (int i = 0; i < 7; i++) {
+			int a = (int) (Math.random() * (122 - 97)) + 97;
+			System.out.println(" a = "  + a);
+			char c = (char) a;
+			System.out.println("c = " + c);
+			lettresj1[i] = c;
+			
+		}
+		System.out.println("Lettres, fin : " + lettresj1.toString());
+		lettresj1_str = lettresj1.toString();
+		return lettresj1;
+
+	}
 }

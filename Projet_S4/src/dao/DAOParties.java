@@ -71,7 +71,7 @@ public class DAOParties {
 			p.setPlateauString(pla.toString());
 			p.setPj1(0);
 			
-			char [] l = p.initialiseLettres(p.getLettresj1());
+			char [] l = p.initialiseLettresj1();
 			p.setLettresj1_str(p.convertLettres(l));
 			p.afficheLettres(p.getLettresj1());
 			
@@ -98,7 +98,8 @@ public class DAOParties {
 			
 			parties.setIdj2(user.getId());
 			
-			char [] l = parties.initialiseLettres(parties.getLettresj2());
+			char [] l = parties.getLettresj2();
+			l = parties.initialiseLettresj2();
 			parties.setLettresj2_str(parties.convertLettres(l));
 			parties.afficheLettres(parties.getLettresj2());
 			

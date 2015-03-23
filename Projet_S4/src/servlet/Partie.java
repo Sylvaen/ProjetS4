@@ -48,12 +48,15 @@ public class Partie extends HttpServlet {
 		
 		DAOParties.createPartie(user, name);
 		Parties p = DAOParties.getPartiesByName(name);
+		p.setUser1(DAOUser.getUserById(p.getIdj1()));
+		p.setUser2(DAOUser.getUserById(p.getIdj2()));
 		String plateau = p.getPlateauString();
 		System.out.println("Partie :  plateau = " + plateau);
 		session.setAttribute("nom", name);
 		session.setAttribute("lettresj1_str", p.getLettresj1_str());
 		session.setAttribute("user", user);
 		session.setAttribute("plateau", plateau);
+		request.setAttribute("partie", p);
 		
 		this.getServletContext().getRequestDispatcher(VIEW)
 				.forward(request, response);
@@ -72,7 +75,7 @@ public class Partie extends HttpServlet {
 			String nom_joueur1, String s, User u) {
 
 		Parties p = new Parties(u);
-		p.initialiseLettres(p.getLettresj1());
+		p.initialiseLettresj1();
 
 		// on range ses lettres dans la session
 
