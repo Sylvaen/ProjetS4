@@ -90,9 +90,9 @@ public class Plateau {
 		String s = "<table>";
 		s+= plateau_string;
 		for (int i = 0; i < TAILLE; i++) {
-			s+= "<tr>";
+			s+= "<tr id="+i+">";
 			for (int j = 0; j < TAILLE; j++) {
-				s+=("<td>"+plateau[i][j].getLettre()+"</td>");
+				s+=("<td id="+j+"><img class=\"lettre\" src=\"style/img/alphabet/"+plateau[i][j].getLettre()+".jpg\"</td>");
 			}
 			s+="</tr>";
 		}
