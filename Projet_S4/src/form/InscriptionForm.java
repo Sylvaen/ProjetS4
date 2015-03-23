@@ -304,4 +304,51 @@ public class InscriptionForm {
         }
         return ok;
     }
+
+	public User inscrireUtilisateurAndroid(String nom, String email,
+			String motDePasse, String confirmation) {
+		User utilisateur = new User();
+        try
+        {
+            traiterNom(nom, utilisateur);
+            traiterEmail(email, utilisateur);
+            traiterMotsDePasse(motDePasse, confirmation, utilisateur);
+
+                if (erreurs.isEmpty())
+                {
+                    System.out.println("on genere la clef...");
+                    String key = generateKey();
+                    utilisateur.setKey(key);
+                    //traiterMail(email, key, nom);
+                    if (erreurs.isEmpty())
+                    {
+                        System.out.println("on creer l'utilisateur...");
+                        DAOUser.createUser(utilisateur);
+                        if (erreurs.isEmpty())
+                        {
+                            resultat = "Succès de l'inscription";
+                        }
+                        else
+                        {
+                            resultat = "Echec de l'inscription1";
+                        }
+                    }
+                    else
+                    {
+                        resultat = "Echec de l'inscription2";
+                    }
+                }
+                else
+                {
+                	System.out.println("Echec 3");
+                    resultat = "Echec de l'inscription3";
+                }
+        }
+        catch (DAOException e)
+        {
+            resultat = "Echec de l'inscription : une erreur imprévue est survenue, merci de réessa" + "yer dans quelques instants.";
+            e.printStackTrace();
+        }
+        return utilisateur;
+	}
 }
