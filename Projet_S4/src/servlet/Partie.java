@@ -1,8 +1,8 @@
 package servlet;
 
+import game.Alphabet;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import beans.Parties;
 import beans.User;
 import dao.DAOParties;
-import dao.DAOPlateau;
 import dao.DAOUser;
 
 /**
@@ -57,6 +56,7 @@ public class Partie extends HttpServlet {
 		session.setAttribute("user", user);
 		session.setAttribute("plateau", plateau);
 		request.setAttribute("partie", p);
+		request.setAttribute("lettresJ1BIEN", p.afficheBienLettresJ1());
 		
 		this.getServletContext().getRequestDispatcher(VIEW)
 				.forward(request, response);
@@ -75,7 +75,8 @@ public class Partie extends HttpServlet {
 			String nom_joueur1, String s, User u) {
 
 		Parties p = new Parties(u);
-		p.initialiseLettresj1();
+		Alphabet al = new Alphabet ();
+		p.initialiseLettresj1(al);
 
 		// on range ses lettres dans la session
 

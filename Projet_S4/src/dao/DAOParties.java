@@ -1,5 +1,7 @@
 package dao;
 
+import game.Alphabet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,11 @@ public class DAOParties {
 		return parties;
 	}
 	
+	/**
+	 * Retourne la partie dont le nom est 'name'
+	 * @param name
+	 * @return
+	 */
 	public static Parties getPartiesByName(String name) {
 
 		Session s = DAOUtil.getSession();
@@ -36,6 +43,8 @@ public class DAOParties {
 			s.beginTransaction();
 			parties = (Parties) s.createQuery("from beans.Parties where nom=:name")
 					.setParameter("name", name).uniqueResult();
+		
+			
 			s.beginTransaction().commit();
 			s.close();
 		} catch (HibernateException e) {
@@ -71,7 +80,8 @@ public class DAOParties {
 			p.setPlateauString(pla.afficherPlateau2(pla.toString()));
 			p.setPj1(0);
 			
-			char [] l = p.initialiseLettresj1();
+			Alphabet al = p.getAlphabet();
+			char [] l = p.initialiseLettresj1(al);
 			p.setLettresj1_str(p.convertLettres(l));
 			p.afficheLettres(p.getLettresj1());
 			
@@ -95,16 +105,12 @@ public class DAOParties {
 			s.beginTransaction();
 			parties = (Parties) s.createQuery("from beans.Parties where nom=:name")
 					.setParameter("name", name).uniqueResult();
-			
 			parties.setIdj2(user.getId());
-			
 			char [] l = parties.getLettresj2();
-			l = parties.initialiseLettresj2();
+			Alphabet al = parties.getAlphabet();
+			l = parties.initialiseLettresj2(al);
 			parties.setLettresj2_str(parties.convertLettres(l));
 			parties.afficheLettres(parties.getLettresj2());
-			
-			
-			
 			s.beginTransaction().commit();
 			s.close();
 		} catch (HibernateException e) {
@@ -112,4 +118,7 @@ public class DAOParties {
 		}
 		return parties;
 	}
+	
+	
+	
 }

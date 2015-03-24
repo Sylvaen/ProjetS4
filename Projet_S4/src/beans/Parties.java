@@ -1,6 +1,9 @@
 package beans;
 
+import game.Alphabet;
+
 import java.io.Serializable;
+import java.util.Set;
 
 
 
@@ -29,7 +32,7 @@ public class Parties implements Serializable {
 	private String lettresj2_str;
 	private char [] lettresj1;
 	private char [] lettresj2;
-	
+	private Alphabet alphabet;
 	
 	public String getLettresj1_str() {
 		return lettresj1_str;
@@ -96,6 +99,7 @@ public class Parties implements Serializable {
 		this.idj1 = u.getId();
 		this.lettresj1 = new char [7];
 		this.lettresj2 = new char [7];
+		this.alphabet = new Alphabet();
 	}
 	
 	public Parties() {
@@ -203,32 +207,39 @@ public class Parties implements Serializable {
 			lettres[i-1] = lettres[i];
 		}
 		
-		lettres[6] = pioche();
+		lettres[6] = pioche(this.alphabet);
 		
 	}
 	
 	/**
 	 * Pioche une lettre et la retourne
 	 */
-	public char pioche () {
+	public char pioche (Alphabet alphabet) {
 
-		int a = (int) (Math.random() * (122 - 97)) + 97;
-		char c = (char) a;
+		int aleatoire = (int) (Math.random() * (alphabet.getSaccoche().size())) + 1;
+		char c  = alphabet.getSaccoche().get(aleatoire).charAt(0);
+		alphabet.getSaccoche().remove(aleatoire);
+		System.out.println("On a tire : " + c);
+		
 		return c;
 	}
-	
+
+	public Alphabet getAlphabet() {
+		return alphabet;
+	}
+
+	public void setAlphabet(Alphabet alphabet) {
+		this.alphabet = alphabet;
+	}
+
 	/**
 	 * Tire 7 lettres aleatoires et les mets dans le tableau 'lettres'
 	 */
-	public char [] initialiseLettresj2() {
+	public char [] initialiseLettresj2(Alphabet al) {
 
 		lettresj2 = new char [7];
 		for (int i = 0; i < 7; i++) {
-			int a = (int) (Math.random() * (122 - 97)) + 97;
-			System.out.println(" a = "  + a);
-			char c = (char) a;
-			System.out.println("c = " + c);
-			lettresj2[i] = c;
+			lettresj2[i] = pioche(al);
 			
 		}
 		System.out.println("Lettres, fin : " + lettresj2.toString());
@@ -250,15 +261,16 @@ public class Parties implements Serializable {
 
 	}
 
-	public char [] initialiseLettresj1() {
+	/**
+	 * Tire 7 lettres aleatoirement pour le JOUEUR 1
+	 * @return
+	 */
+	public char [] initialiseLettresj1(Alphabet al) {
 
 		lettresj1 = new char [7];
+		
 		for (int i = 0; i < 7; i++) {
-			int a = (int) (Math.random() * (122 - 97)) + 97;
-			System.out.println(" a = "  + a);
-			char c = (char) a;
-			System.out.println("c = " + c);
-			lettresj1[i] = c;
+			lettresj1[i] = pioche(al);
 			
 		}
 		System.out.println("Lettres, fin : " + lettresj1.toString());
@@ -266,4 +278,29 @@ public class Parties implements Serializable {
 		return lettresj1;
 
 	}
+	
+	public String afficheBienLettresJ1 () {
+		String s = "";
+		s+= "<tr id="+1+">";
+		for (int j = 0; j < 7; j++) {
+			s+=("<td id="+j+"><img class=\"lettre\" src=\"style/img/alphabet/"+ this.getLettresj1_str().charAt(j)+".jpg\"</td>");
+		}
+		s+= "<tr id="+1+">";
+		return s;
+	}
+	
+	public String afficheBienLettresJ2 () {
+		String s = "";
+		s+= "<tr id="+1+">";
+		for (int j = 0; j < 7; j++) {
+			s+=("<td id="+j+"><img class=\"lettre\" src=\"style/img/alphabet/"+ this.getLettresj2_str().charAt(j)+".jpg\"</td>");
+		}
+		s+= "<tr id="+1+">";
+		return s;
+	}
+	
+
+	
+
+
 }

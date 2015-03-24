@@ -56,6 +56,7 @@ public class RejoindrePartie extends HttpServlet {
 		http.setAttribute("plateau", plateau_tronque);
 		String nom = pa.getNom();
 		http.setAttribute("nom", nom);
+		http.setAttribute("lettresJ2BIEN", pa.afficheBienLettresJ2());
 		
 		this.getServletContext().getRequestDispatcher(VIEW)
 		.forward(request, response);

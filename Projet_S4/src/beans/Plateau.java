@@ -88,7 +88,7 @@ public class Plateau {
 	
 	public String afficherPlateau2(String plateau_string) {
 		String s = "<table>";
-		s+= plateau_string;
+	//	s+= plateau_string;
 		for (int i = 0; i < TAILLE; i++) {
 			s+= "<tr id="+i+">";
 			for (int j = 0; j < TAILLE; j++) {

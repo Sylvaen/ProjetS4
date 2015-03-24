@@ -105,5 +105,13 @@ public class User implements Serializable {
 		this.name = nom_joueur1;
 
 	}
+	
+	/**
+	 * Renvoie la representation d'un User sous forme de chaines de caracteres
+	 */
+	public String toString () {
+		return "User, name = " + this.getName() + " id = " + this.getId();
+ 	}
+	
 
 }

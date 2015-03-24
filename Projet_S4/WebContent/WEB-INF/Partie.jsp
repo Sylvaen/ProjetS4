@@ -12,17 +12,21 @@
 
 
 	<p class="titre">${nom}</p>
- 	<p class="plateau">${plateau}</p>
+	<p class="plateau">${plateau}</p>
 
 	<p>Vos lettres</p>
 	<c:choose>
 		<c:when test="${partie.user1.id == sessionScope.user.id}">
-				<p>${lettresj1_str}</p>
+			<p>${lettresj1_str}</p>
+			<p>${lettresJ1BIEN}</p>
 		</c:when>
 		<c:otherwise>
-				<p>${lettresj2_str}</p>
+			<p>${lettresj2_str}</p>
+			<p>${lettresJ2BIEN}</p>
 		</c:otherwise>
 	</c:choose>
+	
+
 	<p>Vous etes le joueur</p>
 	<p>${user.name}</p>
 
