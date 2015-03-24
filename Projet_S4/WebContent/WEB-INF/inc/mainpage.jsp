@@ -28,20 +28,23 @@
 
 		<!-- Rejoindre les parties ou l'utilisateur joue actuellement  -->
 		<p class="sousTitre">
-			Vos parties en cours:
+			Vos parties en cours:</p>
+			<table>
 			<c:forEach items="${partieEnCours}" var="part">
+			<tr><td>
 				Nom: ${part.nom} J1: ${part.user1.name} J2: ${part.user2.name}
-				
+				</td>
 				<c:if test="${empty part.user2}">aucun</c:if>
-
+				<td>
 				<form method="POST" action="jouerPartie">
 					<input type="submit" value="JouerPartie" name="JouerPartie" />
 					<input type="hidden"  value="${part.nom}" name="jouer" />
 				</form>
-
-				<br>
+				</td>
+				</tr>
 			</c:forEach>
-		</p>
+			</table>
+		
 
 
 		<!-- Rejoindre les parties ou il manque un joueur  -->

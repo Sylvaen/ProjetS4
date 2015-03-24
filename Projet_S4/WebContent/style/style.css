@@ -15,6 +15,10 @@ body {
 	height: 32px;
 }
 
+.cellule{
+	width: 34px;
+	height: 34px;
+}
 #content-left {
 	float: left;
 	width: 200px;
@@ -110,8 +114,6 @@ td {
 	border-width: 1px;
 	border-style: solid;
 	border-color: red;
-	width: 2em;
-	heigth: 2em;
 	text-align: center;
 }
 
