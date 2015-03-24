@@ -5,6 +5,7 @@ import game.Dictionnaire;
 import org.junit.Test;
 
 import beans.Parties;
+import beans.Saccoche;
 import beans.User;
 
 public class DictionnaireTest {
@@ -51,10 +52,10 @@ public class DictionnaireTest {
 	 */
 	@Test
 	public void testSaccoche () {
-		Alphabet al = new Alphabet ();
+		Saccoche s = new Saccoche();
 		Parties p = new Parties (new User());
-		p.pioche(al);
-		Integer taille = p.getAlphabet().getSaccoche().size();
+		p.pioche(s);
+		Integer taille = p.getSaccoche().getSaccoche().size();
 		assertEquals(new Integer(101), taille);
 		
 		

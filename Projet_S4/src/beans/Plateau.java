@@ -29,7 +29,7 @@ public class Plateau {
 		for (int i = 0; i < TAILLE; i++) {
 			for (int j = 0; j < TAILLE; j++) {
 				this.plateau[i][j] = c;
-				this.plateau[i][j].setLettre('a');
+				this.plateau[i][j].setLettre('-');
 			}
 		}
 	}
@@ -87,11 +87,9 @@ public class Plateau {
 	}
 	
 	public String afficherPlateau2(String plateau_string) {
-		String s = "<table class=\"plateau\">";
-		s+= plateau_string;
+		String s = "<table>";
 		for (int i = 0; i < TAILLE; i++) {
-			System.out.println("i: "+i);
-			s+= "<tr class=\"cellule\" id="+i+">";
+			s+= "<tr id="+i+">";
 			for (int j = 0; j < TAILLE; j++) {
 				s+=("<td id="+j+"><img class=\"lettre\" src=\"style/img/alphabet/"+plateau[i][j].getLettre()+".jpg\"</td>");
 			}

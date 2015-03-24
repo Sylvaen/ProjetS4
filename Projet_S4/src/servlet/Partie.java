@@ -1,7 +1,5 @@
 package servlet;
 
-import game.Alphabet;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -12,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Parties;
+import beans.Saccoche;
 import beans.User;
 import dao.DAOParties;
+import dao.DAOSaccoche;
 import dao.DAOUser;
 
 /**
@@ -38,15 +38,16 @@ public class Partie extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
 
 		// On met toutes les infos de la partie dans la session
 		HttpSession session = request.getSession();
 		String name = request.getParameter("nom");
-	User user = (User) session.getAttribute("user");
-		
+		User user = (User) session.getAttribute("user");
 		Parties p = DAOParties.createPartie(user, name);
-		//Parties p = DAOParties.getPartiesByName(name);
+		Saccoche sac = p.getSaccoche();
+		DAOSaccoche.update(sac);
+		
+		// Parties p = DAOParties.getPartiesByName(name);
 		p.setUser1(DAOUser.getUserById(p.getIdj1()));
 		p.setUser2(DAOUser.getUserById(p.getIdj2()));
 		String plateau = p.getPlateauString();
@@ -57,7 +58,7 @@ public class Partie extends HttpServlet {
 		session.setAttribute("plateau", plateau);
 		request.setAttribute("partie", p);
 		request.setAttribute("lettresJ1BIEN", p.afficheBienLettresJ1());
-		
+
 		this.getServletContext().getRequestDispatcher(VIEW)
 				.forward(request, response);
 	}
@@ -75,8 +76,8 @@ public class Partie extends HttpServlet {
 			String nom_joueur1, String s, User u) {
 
 		Parties p = new Parties(u);
-		Alphabet al = new Alphabet ();
-		p.initialiseLettresj1(al);
+
+		DAOParties.update(p);
 
 		// on range ses lettres dans la session
 
