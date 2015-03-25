@@ -1,4 +1,4 @@
-package beans; 
+package beans;
 
 import game.Case;
 
@@ -7,7 +7,6 @@ public class Plateau {
 	private final int TAILLE = 19;
 	private Case[][] plateau;
 	private String nom;
-	
 
 	public String getNom() {
 		return nom;
@@ -19,7 +18,7 @@ public class Plateau {
 
 	public Plateau() {
 		this.plateau = new Case[TAILLE][TAILLE];
-		
+
 		initialisePlateau();
 
 	}
@@ -60,46 +59,66 @@ public class Plateau {
 		boolean verif = true;
 
 		if (s.length() != verification) {
-				verif = false;
+			verif = false;
 		}
 		if (verif == false) {
-			System.out.println("Taille chaine = "+ s.length());
- 			System.out.println("Le contenu de la chaine n'est pas correct."
+			System.out.println("Taille chaine = " + s.length());
+			System.out.println("Le contenu de la chaine n'est pas correct."
 					+ "\n manquant ? mal place ?");
 			return false;
 		}
 
 		return true;
 	}
-	
+
 	public String afficherPlateau() {
 		String s = "<table>";
 		for (int i = 0; i < TAILLE; i++) {
-			s+= "<tr>";
+			s += "<tr>";
 			for (int j = 0; j < TAILLE; j++) {
-				s+=("<td>"+plateau[i][j].getLettre()+"</td>");
+				s += ("<td>" + plateau[i][j].getLettre() + "</td>");
 			}
-			s+= "<tr id="+i+">";
+			s += "<tr id=" + i + ">";
 		}
-		s+="</table>";
+		s += "</table>";
 		return s;
-		
+
 	}
+
+	// A GARDER
+	// public String afficherPlateau2(String plateau_string) {
+	// String s = "<table>";
+	// for (int i = 0; i < TAILLE; i++) {
+	// s+= "<tr id="+i+">";
+	// for (int j = 0; j < TAILLE; j++) {
+	// s+=("<td id=\"c"+(TAILLE*i+j)+"\" onclick=\"selectCase(c"+(TAILLE*i+j)+")\">"
+	// +
+	// "<img class=\"lettre\" src=\"style/img/alphabet/"+plateau[i][j].getLettre()+".jpg\"</td>");
+	// System.out.println(s);
+	// }
+	// s+= "</tr>";
+	// }
+	// s+="</table>";
+	// return s;
+	//
+	// }
 
 	public String afficherPlateau2(String plateau_string) {
 		String s = "<table>";
 		for (int i = 0; i < TAILLE; i++) {
-			s+= "<tr id="+i+">";
+			s += "<tr id=" + i + ">";
 			for (int j = 0; j < TAILLE; j++) {
-				s+=("<td id=\"c"+(TAILLE*i+j)+"\" onclick=\"selectCase(c"+(TAILLE*i+j)+")\">"
-						+ "<img class=\"lettre\" src=\"style/img/alphabet/"+plateau[i][j].getLettre()+".jpg\"</td>");
-				System.out.println(s);
+				s += ("<td id=\"c" + (TAILLE * i + j)
+				
+						+ "\">"
+						+ "<img class=\"lettre\" src=\"style/img/alphabet/"
+						+ plateau[i][j].getLettre() + ".jpg\" onclick=\"selectCase(\'c" + (TAILLE * i + j) + "\') \" </td>");
 			}
-			//s+= "<tr id="+i+">";
-			s+= "</tr>";
+			s += "</tr>";
 		}
-		s+="</table>";
+		s += "</table>";
 		return s;
-		
+
 	}
+
 }

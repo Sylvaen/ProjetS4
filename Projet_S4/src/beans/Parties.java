@@ -315,8 +315,8 @@ public class Parties implements Serializable {
 		String s = "";
 		s += "<tr id=" + 1 + ">";
 		for (int j = 0; j < 7; j++) {
-			s += ("<td id=1"
-					+ "><img class=\"lettre\" src=\"style/img/alphabet/"
+			s += ("<td id='mylettre'"
+					+ "><img id=\""+this.getLettresj1_str().charAt(j)+"\"  onclick=\"putLetter('"+this.getLettresj1_str().charAt(j)+"')\" class=\"lettre\" src=\"style/img/alphabet/"
 					+ this.getLettresj1_str().charAt(j) + ".jpg\"</td>");
 		}
 		s += "</tr>";

@@ -56,7 +56,7 @@ public class Partie extends HttpServlet {
 		session.setAttribute("lettresj1_str", p.getLettresj1_str());
 		session.setAttribute("user", user);
 		session.setAttribute("plateau", plateau);
-		request.setAttribute("partie", p);
+		session.setAttribute("partie", p);
 		request.setAttribute("lettresJ1BIEN", p.afficheBienLettresJ1());
 
 		this.getServletContext().getRequestDispatcher(VIEW)

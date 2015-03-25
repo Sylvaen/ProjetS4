@@ -57,7 +57,7 @@
 	<c:import url="inc/menu.jsp" />
 	<div id="presentation">
 
-		<h2>Bonjour ! C'est votre page d'accueil</h2>
+		<h2>Bienvenue sur votre page d'accueil</h2>
 
 		<p>Vous pouvez voir ici toutes les parties en cours</p>
 		<p>Il est possible d'en creer une ou d'en rejoindre une</p>

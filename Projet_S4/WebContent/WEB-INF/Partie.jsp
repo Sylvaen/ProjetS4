@@ -7,12 +7,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SCR4BBLE</title>
-<script>
-	function selectCase(element) {
-	  // Document.getElementById(""+element).innerHTML="<img class=\"lettre\" src=\"style/img/alphabet/_.jpg\"></img>"
-		document.getElementById(element).firstChild.src = "style/img/alphabet/_.jpg";
-	}
-</script>
+<script type="text/javascript" src="js/game.js"></script>
+
 </head>
 <body>
 
@@ -23,17 +19,21 @@
 
 	<p>Vos lettres</p>
 	<c:choose>
-		<c:when test="${partie.user1.id == sessionScope.user.id}">
+		<c:when test="${sessionScope.partie.user1.id == sessionScope.user.id}">
 			<p>${lettresj1_str}</p>
 			<p>${lettresJ1BIEN}</p>
+			<p>${sessionScope.partie.pj1}</p>
 		</c:when>
 		<c:otherwise>
 			<p>${lettresj2_str}</p>
 			<p>${lettresJ2BIEN}</p>
+			<p>${sessionScope.partie.pj2}</p>
 		</c:otherwise>
 	</c:choose>
 	
-
+	<form action="validerMot" method="post">
+		<input id='word' type='submit' value ='' name = 'validerWord'/>
+	</form>
 	<p>Vous etes le joueur</p>
 	<p>${user.name}</p>
 
