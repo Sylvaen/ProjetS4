@@ -315,11 +315,11 @@ public class Parties implements Serializable {
 		String s = "";
 		s += "<tr id=" + 1 + ">";
 		for (int j = 0; j < 7; j++) {
-			s += ("<td id=" + j
+			s += ("<td id=1"
 					+ "><img class=\"lettre\" src=\"style/img/alphabet/"
 					+ this.getLettresj1_str().charAt(j) + ".jpg\"</td>");
 		}
-		s += "<tr id=" + 1 + ">";
+		s += "</tr>";
 		return s;
 	}
 
@@ -327,11 +327,11 @@ public class Parties implements Serializable {
 		String s = "";
 		s += "<tr id=" + 1 + ">";
 		for (int j = 0; j < 7; j++) {
-			s += ("<td id=" + j
+			s += ("<td id=2" 
 					+ "><img class=\"lettre\" src=\"style/img/alphabet/"
 					+ this.getLettresj2_str().charAt(j) + ".jpg\"</td>");
 		}
-		s += "<tr id=" + 1 + ">";
+		s += "</tr>";
 		return s;
 	}
 

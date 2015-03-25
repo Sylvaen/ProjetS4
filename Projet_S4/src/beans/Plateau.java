@@ -79,21 +79,24 @@ public class Plateau {
 			for (int j = 0; j < TAILLE; j++) {
 				s+=("<td>"+plateau[i][j].getLettre()+"</td>");
 			}
-			s+="</tr>";
+			s+= "<tr id="+i+">";
 		}
 		s+="</table>";
 		return s;
 		
 	}
-	
+
 	public String afficherPlateau2(String plateau_string) {
 		String s = "<table>";
 		for (int i = 0; i < TAILLE; i++) {
 			s+= "<tr id="+i+">";
 			for (int j = 0; j < TAILLE; j++) {
-				s+=("<td id="+j+"><img class=\"lettre\" src=\"style/img/alphabet/"+plateau[i][j].getLettre()+".jpg\"</td>");
+				s+=("<td id=\"c"+(TAILLE*i+j)+"\" onclick=\"selectCase(c"+(TAILLE*i+j)+")\">"
+						+ "<img class=\"lettre\" src=\"style/img/alphabet/"+plateau[i][j].getLettre()+".jpg\"</td>");
+				System.out.println(s);
 			}
-			s+="</tr>";
+			//s+= "<tr id="+i+">";
+			s+= "</tr>";
 		}
 		s+="</table>";
 		return s;

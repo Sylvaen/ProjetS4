@@ -73,11 +73,11 @@ public class DAOParties {
 		try {
 			Plateau pla = new Plateau();
 			pla.initialisePlateau();
-			System.out.println("DAOParties : plateau = " + pla.toString());
 			p.setNom(name);
 			
 			p.setIdj1(user.getId());
 			p.setPlateauString(pla.afficherPlateau2(pla.toString()));
+			System.out.println("DAOPArties plateau = " + pla.afficherPlateau2(pla.toString()) );
 			p.setPj1(0);
 			char [] l = p.initialiseLettresj1(p.getSaccoche());
 			p.setLettresj1_str(p.convertLettres(l));

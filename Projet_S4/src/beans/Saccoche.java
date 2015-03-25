@@ -3,11 +3,14 @@ package beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+ /**
+  * Une saccoche represente les lettres disponibles lors de la pioche
+  * @author amaury
+  *
+  */
 public class Saccoche implements Serializable{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList <String> saccoche;
 	private String listLettre = "";
@@ -15,6 +18,10 @@ public class Saccoche implements Serializable{
 	private int idparties;
 	private int id;
 	
+	/**
+	 * Retourne le nombre de lettres de la saccoche
+	 * @return
+	 */
 	public int getNbLettres() {
 		return nbLettres;
 	}

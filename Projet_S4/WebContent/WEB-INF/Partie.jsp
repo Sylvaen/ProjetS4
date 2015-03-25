@@ -7,9 +7,16 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SCR4BBLE</title>
+<script>
+	function selectCase(element) {
+	  // Document.getElementById(""+element).innerHTML="<img class=\"lettre\" src=\"style/img/alphabet/_.jpg\"></img>"
+		document.getElementById(element).firstChild.src = "style/img/alphabet/_.jpg";
+	}
+</script>
 </head>
 <body>
 
+	
 
 	<p class="titre">${nom}</p>
 	<p class="plateau">${plateau}</p>
@@ -29,7 +36,6 @@
 
 	<p>Vous etes le joueur</p>
 	<p>${user.name}</p>
-
 
 </body>
 </html>
