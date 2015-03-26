@@ -9,8 +9,11 @@
 		<property name="nom" column="nom" type="string"></property>
 		<property name="idj1" column="idj1" type="integer"></property>
 		<property name="idj2" column="idj2" type="integer"></property>
+		<property name="pj1" column="pj1" type="integer"></property>
+		<property name="pj2" column="pj2" type="integer"></property>
 		<property name="lettresj1_str" column="joueur1" type="string"></property>
 		<property name="lettresj2_str" column="joueur2" type="string"></property>
 		<property name="plateauString" column="plateau" type="string"></property>
+
 	</class>
 </hibernate-mapping>

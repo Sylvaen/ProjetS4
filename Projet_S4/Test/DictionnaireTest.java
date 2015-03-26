@@ -46,19 +46,5 @@ public class DictionnaireTest {
 		assertEquals(new Integer(102), taille);
 		
 	}
-	
-	/**
-	 * Verifie que la pioche fonctionne
-	 */
-	@Test
-	public void testSaccoche () {
-		Saccoche s = new Saccoche();
-		Parties p = new Parties (new User());
-		p.pioche(s);
-		Integer taille = p.getSaccoche().getSaccoche().size();
-		assertEquals(new Integer(101), taille);
-		
-		
-	}
 
 }
