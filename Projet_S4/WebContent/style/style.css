@@ -35,18 +35,20 @@ body {
 
 #content-right {
 	float: right;
-	width: 200px;
-	margin-right: 10px;
+	width: 300px;
+	margin-left: 10px;
+	margin-top: -648px;
 	background-color: #6C929F;
-	display: inline-block;
 	padding-bottom: 10px;
 	padding-top: 0px;
 	height: auto;
 	-webkit-box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 40);
 	box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 40);
-	height: auto;
 }
 
+#main{
+	clear: both;
+}
 #content-left .erreurMessage{
 	font-size: 15px;
 }
@@ -71,10 +73,11 @@ body {
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
 #content {
 	background-color: #6C929F;
 	margin-left: 250px;
-	margin-right: 310px;
+	margin-right: 250px;
 	overflow: hidden;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -83,7 +86,8 @@ body {
 	text-align: center;
 	-webkit-box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 40);
 	box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 40);
-	width: 60%;
+	width: 50em;
+	height: auto;
 }
 
 .clickregister:hover{

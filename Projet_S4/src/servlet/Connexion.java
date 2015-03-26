@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Parties;
+import beans.Statistiques;
 import beans.User;
 import dao.ConnexionMYSQL;
 import dao.DAOParties;
+import dao.DAOStats;
 import dao.DAOUser;
 import form.ConnexionForm;
 
@@ -63,7 +65,8 @@ public class Connexion extends HttpServlet {
 		User utilisateur = form.connecterUtilisateur(request);
 		/* Si il n'y a pas eu d'erreur */
 		if (form.getErreurs().isEmpty()) {
-
+			Statistiques sta = DAOStats.getStatsByUser(utilisateur);
+			System.out.println(sta.toString());
 			String name = request.getParameter("nom");
 			String pseudo = request.getParameter("pseudo");
 

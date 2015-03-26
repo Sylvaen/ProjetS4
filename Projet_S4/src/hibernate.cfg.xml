@@ -13,5 +13,6 @@
 		<mapping resource="User.hbm.xml" />
 		<mapping resource="Parties.hbm.xml" />
 		<mapping resource="Saccoche.hbm.xml"/>
+		<mapping resource="Statistique.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

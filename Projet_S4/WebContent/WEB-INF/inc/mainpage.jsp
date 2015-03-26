@@ -1,76 +1,32 @@
-<div id="content-left">
-	<p class="plogin">${sessionScope.user.name}</p>
-	<p class="infoUser">Parties gagnees: 10</p>
-	<p class="infoUser">Ratio: 50%</p>
-	<form action="deconnexion">
-		<input type="submit" value="Deconnexion" name="Deconnexion" />
-	</form>
-</div>
-
-<div id="content-right">
-	<!-- Rejoindre les parties ou l'utilisateur joue actuellement  -->
-	<p class="plogin">Parties en cours</p>
-	<table>
-		<c:forEach items="${partieEnCours}" var="part">
-			<tr>
-				<td>${part.nom}</td>
-			</tr>
-			<tr>
-				<td>J1: ${part.user1.name} J2: ${part.user2.name} <c:if
-						test="${empty part.user2}">aucun</c:if></td>
-				<td>
-					<form method="POST" action="jouerPartie">
-						<input type="submit" value="JouerPartie" name="JouerPartie" /> <input
-							type="hidden" value="${part.nom}" name="jouer" />
-					</form>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
+<div id="main">
+	<div id="content-left">
+		<p class="plogin">${sessionScope.user.name}</p>
+		<p class="infoUser">Parties gagnees: 10</p>
+		<p class="infoUser">Ratio: 50%</p>
+		<form action="deconnexion">
+			<input type="submit" value="Deconnexion" name="Deconnexion" />
+		</form>
+	</div>
 
 
+	<div id="content">
+		<c:import url="inc/menu.jsp" />
+		<div id="presentation">
 
-	<!-- Rejoindre les parties ou il manque un joueur  -->
+			<h2>Bonjour ! C'est votre page d'accueil</h2>
 
-	<p class="plogin">Parties disponibles</p>
-	<table>
-		<c:forEach items="${available}" var="part">
-			<tr>
-				<td>${part.nom}</td>
-			</tr>
-			<tr>
-				<td>J1: ${part.user1.name} J2: ${part.user2.name} <c:if
-						test="${empty part.user2}">aucun</c:if>
-				</td>
-				<td>
-					<form method="POST" action="RejoindrePartie">
-						<input type="submit" value="Rejoindre" name="Rejoindre" /> <input
-							type="hidden" value="${part.nom}" name="partie" /> <input
-							type="hidden" value="${part.user1.name}" name="joueur1" />
-					</form>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-</div>
-<div id="content">
-	<c:import url="inc/menu.jsp" />
-	<div id="presentation">
+			<p>Vous pouvez voir ici toutes les parties en cours</p>
+			<p>Il est possible d'en creer une ou d'en rejoindre une</p>
 
-		<h2>Bonjour ! C'est votre page d'accueil</h2>
-
-		<p>Vous pouvez voir ici toutes les parties en cours</p>
-		<p>Il est possible d'en creer une ou d'en rejoindre une</p>
-
-		<!-- CREER PARTIE  -->
+			<!-- CREER PARTIE  -->
 
 
-		<FORM method="POST" action="createPartie">
-			<input type="hidden" value="${sessionScope.user.name}"
-				name="nom_joueur1" /> <input type="text" value="Nom partie"
-				name="nom" /> <input type="submit" value="Creer partie"
-				name="creer" />
-		</FORM>
+			<FORM method="POST" action="createPartie">
+				<input type="hidden" value="${sessionScope.user.name}"
+					name="nom_joueur1" /> <input type="text" value="Nom partie"
+					name="nom" /> <input type="submit" value="Creer partie"
+					name="creer" />
+			</FORM>
 
 
 
@@ -78,7 +34,7 @@
 
 
 
-		<%-- 	ANCIENNE METHODE
+			<%-- 	ANCIENNE METHODE
 		<!-- REJOINDRE PARTIE  -->
 		<p>Voici les parties que vous pouvez rejoindre</p>
 		<p>
@@ -93,5 +49,53 @@
 				</form>
 			</c:forEach>
 		</p> --%>
+		</div>
+	</div>
+
+	<div id="content-right">
+		<!-- Rejoindre les parties ou l'utilisateur joue actuellement  -->
+		<p class="plogin">Parties en cours</p>
+		<table>
+			<c:forEach items="${partieEnCours}" var="part">
+				<tr>
+					<td>${part.nom}</td>
+				</tr>
+				<tr>
+					<td>J1: ${part.user1.name} J2: ${part.user2.name} <c:if
+							test="${empty part.user2}">aucun</c:if></td>
+					<td>
+						<form method="POST" action="jouerPartie">
+							<input type="submit" value="JouerPartie" name="JouerPartie" /> <input
+								type="hidden" value="${part.nom}" name="jouer" />
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+
+
+
+		<!-- Rejoindre les parties ou il manque un joueur  -->
+
+		<p class="plogin">Parties disponibles</p>
+		<table>
+			<c:forEach items="${available}" var="part">
+				<tr>
+					<td>${part.nom}</td>
+				</tr>
+				<tr>
+					<td>J1: ${part.user1.name} J2: ${part.user2.name} <c:if
+							test="${empty part.user2}">aucun</c:if>
+					</td>
+					<td>
+						<form method="POST" action="RejoindrePartie">
+							<input type="submit" value="Rejoindre" name="Rejoindre" /> <input
+								type="hidden" value="${part.nom}" name="partie" /> <input
+								type="hidden" value="${part.user1.name}" name="joueur1" />
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 </div>

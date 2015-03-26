@@ -14,6 +14,8 @@ import beans.User;
 
 import com.google.gson.Gson;
 
+import dao.DAOSaccoche;
+import dao.DAOStats;
 import dao.DAOUser;
 
 @Path("/login")
@@ -50,11 +52,10 @@ public class Login {
             }
             catch (IOException e)
             {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-               
-            return gson.toJson(user);
+            
+            return gson.toJson(user) + gson.toJson(DAOStats.getStatsByUser(user));
         }
             
         
